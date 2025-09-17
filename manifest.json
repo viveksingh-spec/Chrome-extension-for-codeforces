@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "codeforces todo",
+  "version": "0.1",
+  "author": "Vivek singh",
+  "description": "This is first Extension i am developing",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://codeforces.com/problemset/problem/*",
+        "https://codeforces.com/contest/*/problem/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources" : [
+    {
+      "resources": ["assets/*"],
+      "matches" : ["<all_urls>"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "assets/ext-icon.png",
+      "24": "assets/ext-icon.png",
+      "32": "assets/ext-icon.png"
+    },
+    "default_popup": "index.html",
+    "default_title": "A tooltip popup description when you hover over the Chrome Extension icon."
+  }
+}

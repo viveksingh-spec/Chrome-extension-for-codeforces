@@ -22,14 +22,37 @@ function viewbookmarks(bookmarks){
 
 function addbookmark(bookmark){
        const newitem = document.createElement("div")
-       newitem.id = "item"
+       newitem.className = "item"
+
        const ProblemName = document.createElement("p")
        ProblemName.id = "bookmark-name"
        ProblemName.innerText = bookmark.name
+
+       ProblemName.addEventListener("click",()=>{
+           chrome.tabs.create({url:bookmark.url})
+       })
+
        const deleteimg = document.createElement("img")
-       deleteimg.id = "delete-img"
+       deleteimg.className = "delete-img"
        deleteimg.src = deleteimage
+       
+ deleteimg.addEventListener("click", () => {
+        newitem.classList.add("slide-out");
+
+        newitem.addEventListener("transitionend", () => {
+            chrome.storage.sync.get([CF_PROBLEM_KEY], data => {
+                const current = data[CF_PROBLEM_KEY] || [];
+                const updated = current.filter(b => b.url !== bookmark.url);
+                chrome.storage.sync.set({ [CF_PROBLEM_KEY]: updated }, () => {
+                    newitem.remove();
+                });
+            });
+        }, { once: true });
+    });
+
+
        newitem.append(ProblemName)
        newitem.append(deleteimg)
        bookmarksection.appendChild(newitem)
 }
+
