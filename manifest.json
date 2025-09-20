@@ -35,6 +35,6 @@
       "32": "assets/ext-icon.png"
     },
     "default_popup": "index.html",
-    "default_title": "A tooltip popup description when you hover over the Chrome Extension icon."
+    "default_title": "A chrome extension that helps you to bookmark your important and unsolved questions for future solving"
   }
 }
