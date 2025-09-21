@@ -44,7 +44,7 @@ body {
     width: 24px;
     height: 24px;
     cursor: pointer;
-    transition: transform 0.15s ease;
+    transition: transform 0.5s ease;
 }
 
 .delete-img:hover {
